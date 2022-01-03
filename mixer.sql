@@ -16,8 +16,7 @@ CREATE TABLE ingredients (
     type VARCHAR(20) NOT NULL,
     img_sm VARCHAR(100) NOT NULL,
     img_md VARCHAR(100) NOT NULL,
-    img_lg VARCHAR(100) NOT NULL,
-    likes INT DEFAULT(0)
+    img_lg VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE cocktails (

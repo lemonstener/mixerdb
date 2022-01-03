@@ -13,7 +13,9 @@
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "express": "^4.17.2",
+    "jsonschema": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
-    "nodepg": "^4.0.0"
+    "nodepg": "^4.0.0",
+    "pg": "^8.7.1"
   }
 }
