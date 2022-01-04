@@ -62,6 +62,27 @@ class User {
     const user = result.rows[0];
     return user;
   }
+
+  static async login(username, password) {
+    const result = await db.query(
+      `
+      SELECT username,password
+      FROM users
+      WHERE username=$1
+      `,
+      [username]
+    );
+    const user = result.rows[0];
+
+    if (user) {
+      const valid = await bcrypt.compare(password, user.password);
+      if (valid) {
+        delete user.password;
+        return user;
+      }
+    }
+    throw new ExpressError("Invalid username/password", 400);
+  }
 }
 
 module.exports = User;
