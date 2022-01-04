@@ -2,9 +2,11 @@ const express = require("express");
 const app = express();
 const ExpressError = require("./expressError");
 const userRoutes = require("./routes/users");
+const ingredientRoutes = require("./routes/ingredients");
 
 app.use(express.json());
 app.use("/users", userRoutes);
+app.use("/ingredients", ingredientRoutes);
 
 app.use((req, res, next) => {
   const e = new ExpressError("Page Not Found", 404);
