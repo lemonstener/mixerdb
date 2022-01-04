@@ -39,4 +39,17 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
+router.get("/:name", async (req, res, next) => {
+  try {
+    const user = await User.getByUsername(req.params.name);
+    if (user.rows.length > 0) {
+      return res.status(200).json(user.rows[0]);
+    } else {
+      throw new ExpressError("User Not Found", 404);
+    }
+  } catch (error) {
+    return next(error);
+  }
+});
+
 module.exports = router;
