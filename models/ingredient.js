@@ -21,6 +21,7 @@ class Ingredient {
     if (result.rows.length === 0) {
       throw new ExpressError("Ingredient Not Found", 404);
     }
+
     return result.rows[0];
   }
 
@@ -51,6 +52,26 @@ class Ingredient {
     if (result.rows.length === 0) {
       throw new ExpressError("Ingredient Not Found", 404);
     }
+    return result.rows;
+  }
+
+  static async getCocktails(name) {
+    const str1 = `${name},%`;
+    const str2 = `%,${name}`;
+    const str3 = `%,${name},%`;
+
+    const result = await db.query(
+      `
+    SELECT id,name,img,ingredients,measurments,instructions,likes
+    FROM cocktails 
+    WHERE LOWER(ingredients) LIKE LOWER($1) OR 
+    LOWER(ingredients) LIKE LOWER($2) OR 
+    LOWER(ingredients) LIKE LOWER($3)
+    ORDER BY id
+    `,
+      [str1, str2, str3]
+    );
+
     return result.rows;
   }
 }
