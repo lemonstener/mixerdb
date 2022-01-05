@@ -55,21 +55,16 @@ class Ingredient {
     return result.rows;
   }
 
-  static async getCocktails(name) {
-    const str1 = `${name},%`;
-    const str2 = `%,${name}`;
-    const str3 = `%,${name},%`;
-
+  static async getCocktails(id) {
     const result = await db.query(
       `
-    SELECT id,name,img,ingredients,measurments,instructions,likes
-    FROM cocktails 
-    WHERE LOWER(ingredients) LIKE LOWER($1) OR 
-    LOWER(ingredients) LIKE LOWER($2) OR 
-    LOWER(ingredients) LIKE LOWER($3)
-    ORDER BY id
+    SELECT id,name,img,measurments,instructions
+    FROM cocktails AS c
+    JOIN cocktail_ingredients AS ci
+    ON c.id = ci.cocktail_id
+    WHERE ingredient_id = $1
     `,
-      [str1, str2, str3]
+      [id]
     );
 
     return result.rows;
