@@ -5,7 +5,7 @@ const jsonschema = require("jsonschema");
 const User = require("../models/user");
 const userRegisterSchema = require("../schemas/userRegister.json");
 const userLoginSchema = require("../schemas/userLogin.json");
-const createToken = require("../helpers/tokens");
+const { createToken } = require("../helpers/tokens");
 
 router.post("/register", async (req, res, next) => {
   try {

@@ -55,6 +55,22 @@ class Ingredient {
     return result.rows;
   }
 
+  static async getByType(type) {
+    const result = await db.query(
+      `
+    SELECT id,name,type,img_sm,img_md,img_lg
+    FROM ingredients 
+    WHERE LOWER(type)=$1
+    `,
+      [type]
+    );
+
+    if (result.rows.length === 0) {
+      throw new ExpressError("No Ingredients Found", 404);
+    }
+    return result.rows;
+  }
+
   static async getCocktails(id) {
     const result = await db.query(
       `
@@ -67,6 +83,9 @@ class Ingredient {
       [id]
     );
 
+    if (result.rows.length === 0) {
+      throw new ExpressError("No cocktails with that ingredient", 404);
+    }
     return result.rows;
   }
 }
