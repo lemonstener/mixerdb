@@ -3,12 +3,14 @@ const app = express();
 const ExpressError = require("./expressError");
 const userRoutes = require("./routes/users");
 const ingredientRoutes = require("./routes/ingredients");
+const coctailRoutes = require("./routes/cocktails");
 const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
 app.use("/users", userRoutes);
 app.use("/ingredients", ingredientRoutes);
+app.use("/cocktails", coctailRoutes);
 
 app.use((req, res, next) => {
   const e = new ExpressError("Page Not Found", 404);

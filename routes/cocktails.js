@@ -1,15 +1,15 @@
 const express = require("express");
 const router = new express.Router();
-const Ingredient = require("../models/ingredient");
+const Cocktail = require("../models/cocktail");
 
 router.get("/", async (req, res, next) => {
-  const result = await Ingredient.getAll();
+  const result = await Cocktail.getAll();
   return res.status(200).json(result);
 });
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const result = await Ingredient.getById(req.params.id);
+    const result = await Cocktail.getById(req.params.id);
     return res.status(200).json(result);
   } catch (error) {
     return next(error);
@@ -18,7 +18,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.get("/name/:name", async (req, res, next) => {
   try {
-    const result = await Ingredient.getByName(req.params.name);
+    const result = await Cocktail.getByName(req.params.name);
     return res.status(200).json(result);
   } catch (error) {
     return next(error);
@@ -27,7 +27,7 @@ router.get("/name/:name", async (req, res, next) => {
 
 router.get("/like/:name", async (req, res, next) => {
   try {
-    const result = await Ingredient.getLike(req.params.name);
+    const result = await Cocktail.getLike(req.params.name);
     return res.status(200).json(result);
   } catch (error) {
     return next(error);
