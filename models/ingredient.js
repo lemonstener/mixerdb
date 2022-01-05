@@ -29,7 +29,7 @@ class Ingredient {
       `
     SELECT id,name,type,img_sm,img_md,img_lg
     FROM ingredients
-    WHERE name=$1`,
+    WHERE LOWER(name)=$1`,
       [name]
     );
     if (result.rows.length === 0) {

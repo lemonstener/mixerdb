@@ -3,7 +3,9 @@ const app = express();
 const ExpressError = require("./expressError");
 const userRoutes = require("./routes/users");
 const ingredientRoutes = require("./routes/ingredients");
+const cors = require("cors");
 
+app.use(cors());
 app.use(express.json());
 app.use("/users", userRoutes);
 app.use("/ingredients", ingredientRoutes);
