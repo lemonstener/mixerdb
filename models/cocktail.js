@@ -1,6 +1,5 @@
 const db = require("../db");
 const ExpressError = require("../expressError");
-const Ingredient = require("../models/ingredient");
 
 class Cocktail {
   static async getAll() {

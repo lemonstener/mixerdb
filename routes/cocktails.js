@@ -1,4 +1,5 @@
 const express = require("express");
+const { ExpressError } = require("../../express-jobly/expressError");
 const router = new express.Router();
 const Cocktail = require("../models/cocktail");
 
@@ -30,7 +31,6 @@ router.get("/name/:name", async (req, res, next) => {
 router.get("/like/:name", async (req, res, next) => {
   try {
     const result = await Cocktail.getLike(req.params.name);
-    result.ingredients = await Cocktail.getIngredients(result.id);
     return res.status(200).json(result);
   } catch (error) {
     return next(error);

@@ -37,7 +37,6 @@ router.get("/like/:name", async (req, res, next) => {
 router.get("/type/:type", async (req, res, next) => {
   try {
     const result = await Ingredient.getByType(req.params.type);
-    console.log(res);
     return res.status(200).json(result);
   } catch (error) {
     return next(error);

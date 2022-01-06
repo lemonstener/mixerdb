@@ -74,7 +74,7 @@ class Ingredient {
   static async getCocktails(id) {
     const result = await db.query(
       `
-    SELECT id,name,img,measurments,instructions
+    SELECT id,name,img
     FROM cocktails AS c
     JOIN cocktail_ingredients AS ci
     ON c.id = ci.cocktail_id
