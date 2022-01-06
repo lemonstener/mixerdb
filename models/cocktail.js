@@ -4,7 +4,7 @@ const ExpressError = require("../expressError");
 class Cocktail {
   static async getAll() {
     const result = await db.query(`
-        SELECT * 
+        SELECT id,name,img 
         FROM cocktails
         ORDER BY id`);
     return result.rows;
@@ -42,7 +42,7 @@ class Cocktail {
     const str = `%${name}%`;
     const result = await db.query(
       `
-      SELECT id,name,img,measurments,instructions
+      SELECT id,name,img
       FROM cocktails
       WHERE LOWER(name) LIKE $1
       `,
