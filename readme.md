@@ -44,3 +44,7 @@ This app is more of an encyclopedia for cocktails at this moment. There are no o
 ## Credits
 
 All cocktail and ingredient information was scraped from the **Cocktaildb** --> https://www.thecocktaildb.com/
+
+Remember to drink responsibly and not go anywhere near this application unless you're at least 21 years of age.
+
+![Gatsby!](https://media1.giphy.com/media/u4CY9BW4umAfu/200.gif)
