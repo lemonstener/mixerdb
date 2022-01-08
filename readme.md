@@ -1,4 +1,4 @@
-# Mixer DB - backend
+# Mixer DB
 
 ## Overview
 
@@ -36,10 +36,6 @@ Fairly simple stuff. One table each for cocktails and ingredients and a through 
     - GET /cocktails/id/:id --> get single cocktail by id (also displays ingredients)
     - GET /cocktails/name/:name --> get single cocktail by name (exact match. Also displays ingredients)
     - GET /cocktails/like/:name --> get multiple cocktails that partially match the name
-
-## Notes
-
-This app is more of an encyclopedia for cocktails at this moment. There are no options right now for users to create their own accounts or cocktails, but that might change in the future.
 
 ## Credits
 
