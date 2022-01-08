@@ -4,7 +4,12 @@
 
 Welcome to the MixerDB repository! 
 
-Mixer DB is cocktail database that contains hundreds of cocktails and ingredients. This repository contains all of the files needed to create a fully functional database along with an API to easily find what you need.
+Mixer DB is cocktail database that contains hundreds of cocktails and ingredients plus user functionality. This repository contains all of the files needed to create a fully functional database along with an API to easily find what you need.
+
+**Total number of ingredients**: 481
+
+**Total number of cocktails**: 563
+
 
 ## Technologies used
 
@@ -42,12 +47,6 @@ Node.js, Express.js, PostgreSQL
    - POST /login --> login to account, returns a token
    - GET /:name --> search a user by name
    - GET /favorites/:id --> get favorite cocktails of user by id
-
-## What is in this database 
-
-**Total number of ingredients**: 481
-
-**Total number of cocktails**: 563
 
 ## Credits
 
