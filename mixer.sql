@@ -22,7 +22,7 @@ CREATE TABLE cocktails (
 CREATE TABLE cocktail_ingredients (
     cocktail_id INT NOT NULL REFERENCES cocktails ON DELETE CASCADE,
     ingredient_id INT NOT NULL REFERENCES ingredients ON DELETE CASCADE,
-    measure TEXT
+    measure VARCHAR(20)
 );
 
 CREATE TABLE users (
