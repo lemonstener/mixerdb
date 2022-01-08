@@ -36,6 +36,12 @@ Node.js, Express.js, PostgreSQL
     - GET /cocktails/name/:name --> get single cocktail by name (exact match. Also displays ingredients)
     - GET /cocktails/like/:name --> get multiple cocktails that partially match the name
 
+3. Users:
+   - POST /register --> create a new account, returns a token
+   - POST /login --> login to account, returns a token
+   - GET /:name --> search a user by name
+   - GET /favorites/:id --> get favorite cocktails of user by id
+
 ## What is in this database 
 
 **Total number of ingredients**: 481
