@@ -1,7 +1,10 @@
 const express = require("express");
-const { ExpressError } = require("../../express-jobly/expressError");
+const ExpressError = require("../expressError");
 const router = new express.Router();
 const Cocktail = require("../models/cocktail");
+const User = require("../models/user");
+const { SECRET_KEY } = require("../config");
+const jwt = require("jsonwebtoken");
 
 router.get("/", async (req, res, next) => {
   const result = await Cocktail.getAll();
@@ -34,6 +37,17 @@ router.get("/like/:name", async (req, res, next) => {
     return res.status(200).json(result);
   } catch (error) {
     return next(error);
+  }
+});
+
+router.post("/favorite/:id", async (req, res, next) => {
+  try {
+    const token = req.body._token;
+    const data = jwt.verify(token, SECRET_KEY);
+    const { msg, code } = await User.favCocktail(data.id, req.params.id);
+    return res.status(code).json(msg);
+  } catch (error) {
+    return next(new ExpressError("Please login first", 401));
   }
 });
 

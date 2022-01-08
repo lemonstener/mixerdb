@@ -15,13 +15,26 @@ CREATE TABLE cocktails (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE,
     img TEXT NOT NULL,
-    instructions TEXT NOT NULL
+    instructions TEXT NOT NULL,
+    likes INT DEFAULT(0)
 );
 
 CREATE TABLE cocktail_ingredients (
     cocktail_id INT NOT NULL REFERENCES cocktails ON DELETE CASCADE,
     ingredient_id INT NOT NULL REFERENCES ingredients ON DELETE CASCADE,
     measure TEXT
+);
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(25) NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE fav_cocktails (
+    user_id INT NOT NULL REFERENCES users ON DELETE CASCADE,
+    cocktail_id INT NOT NULL REFERENCES cocktails ON DELETE CASCADE
 );
 
 

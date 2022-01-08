@@ -4,7 +4,7 @@ const ExpressError = require("../expressError");
 class Cocktail {
   static async getAll() {
     const result = await db.query(`
-        SELECT id,name,img 
+        SELECT id,name,img,likes 
         FROM cocktails
         ORDER BY id`);
     return result.rows;
@@ -13,7 +13,7 @@ class Cocktail {
   static async getById(id) {
     const result = await db.query(
       `
-    SELECT id,name,img,instructions
+    SELECT id,name,img,instructions,likes
     FROM cocktails
     WHERE id=$1`,
       [id]
@@ -27,7 +27,7 @@ class Cocktail {
   static async getByName(name) {
     const result = await db.query(
       `
-    SELECT id,name,img,instructions
+    SELECT id,name,img,instructions,likes
     FROM cocktails
     WHERE LOWER(name)=$1`,
       [name]
@@ -42,7 +42,7 @@ class Cocktail {
     const str = `%${name}%`;
     const result = await db.query(
       `
-      SELECT id,name,img
+      SELECT id,name,img,likes
       FROM cocktails
       WHERE LOWER(name) LIKE $1
       `,
@@ -67,6 +67,28 @@ class Cocktail {
     );
 
     return result.rows;
+  }
+
+  static async increaseLikes(id) {
+    const result = await db.query(
+      `
+    UPDATE cocktails
+    SET likes=likes + 1
+    WHERE id=$1
+    `,
+      [id]
+    );
+  }
+
+  static async decreaseLikes(id) {
+    const result = await db.query(
+      `
+    UPDATE cocktails
+    SET likes=likes - 1
+    WHERE id=$1
+    `,
+      [id]
+    );
   }
 }
 
