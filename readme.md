@@ -17,7 +17,6 @@ Node.js, Express.js, PostgreSQL
 
 ## Database Schema
 
-Fairly simple stuff. One table each for cocktails and ingredients and a through table to match everything.
 
 ![Schema!](db-schema.png)
 
