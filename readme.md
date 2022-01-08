@@ -35,6 +35,7 @@ Node.js, Express.js, PostgreSQL
     - GET /cocktails/id/:id --> get single cocktail by id (also displays ingredients)
     - GET /cocktails/name/:name --> get single cocktail by name (exact match. Also displays ingredients)
     - GET /cocktails/like/:name --> get multiple cocktails that partially match the name
+    - POST /cocktails/favorite/:id --> favorite/unfavorite a cocktail (user must be logged in and provide a token)
 
 3. Users:
    - POST /register --> create a new account, returns a token
