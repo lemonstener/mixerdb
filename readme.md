@@ -2,9 +2,9 @@
 
 ## Overview
 
-Welcome to the Mixer DB Backend repository! 
+Welcome to the MixerDB repository! 
 
-Mixer DB is cocktail mixology application that contains a database with hundreds of cocktails and ingredients. This repository contains all of the files needed to create a fully functional database along with an API to easily find what you need.
+Mixer DB is cocktail database that contains hundreds of cocktails and ingredients. This repository contains all of the files needed to create a fully functional database along with an API to easily find what you need.
 
 ## Technologies used
 
@@ -37,9 +37,15 @@ Fairly simple stuff. One table each for cocktails and ingredients and a through 
     - GET /cocktails/name/:name --> get single cocktail by name (exact match. Also displays ingredients)
     - GET /cocktails/like/:name --> get multiple cocktails that partially match the name
 
+## What is in this database 
+
+**Total number of ingredients**: 481
+
+**Total number of cocktails**: 563
+
 ## Credits
 
-All cocktail and ingredient information was scraped from the **Cocktaildb** --> https://www.thecocktaildb.com/
+All cocktail and ingredient information was taken from the **Cocktaildb** --> https://www.thecocktaildb.com/
 
 Remember to drink responsibly and not go anywhere near this application unless you're at least 21 years of age.
 
