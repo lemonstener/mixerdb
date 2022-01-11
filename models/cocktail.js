@@ -10,6 +10,19 @@ class Cocktail {
     return result.rows;
   }
 
+  static async selectRandom() {
+    const result = await db.query(
+      `
+      SELECT id,name,img,likes
+      FROM cocktails
+      ORDER BY RANDOM()
+      LIMIT 5;
+      `
+    );
+
+    return result.rows;
+  }
+
   static async getById(id) {
     const result = await db.query(
       `

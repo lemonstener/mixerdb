@@ -3,10 +3,27 @@ const ExpressError = require("../expressError");
 
 class Ingredient {
   static async getAll() {
-    const result = await db.query(`
+    const result = await db.query(
+      `
     SELECT * 
     FROM ingredients
-    ORDER BY id`);
+    ORDER BY id
+    `
+    );
+
+    return result.rows;
+  }
+
+  static async selectRandom() {
+    const result = await db.query(
+      `
+      SELECT id,name,type,img_sm,img_md,img_lg
+      FROM ingredients
+      ORDER BY RANDOM()
+      LIMIT 5;
+      `
+    );
+
     return result.rows;
   }
 

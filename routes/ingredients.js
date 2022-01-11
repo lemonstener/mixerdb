@@ -7,6 +7,11 @@ router.get("/", async (req, res, next) => {
   return res.status(200).json(result);
 });
 
+router.get("/random", async (req, res, next) => {
+  const result = await Ingredient.selectRandom();
+  return res.status(200).json(result);
+});
+
 router.get("/id/:id", async (req, res, next) => {
   try {
     const result = await Ingredient.getById(req.params.id);

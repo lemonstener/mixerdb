@@ -29,6 +29,7 @@ Node.js, Express.js, PostgreSQL
 
 1. Ingredients:
    - GET /ingredients --> get all ingredients from the db
+   - GET /ingredients/random --> get 5 random ingredients
    - GET /ingredients/id/:id --> get single ingredient by id
    - GET /ingredients/name/:name --> get single ingredient by name (exact match)
    - GET /ingredients/like/:name --> get multiple ingredients that partially match the name
@@ -37,6 +38,7 @@ Node.js, Express.js, PostgreSQL
 
 2. Cocktails:
     - GET /cocktails --> get all cocktails from the db
+    - GET /cocktails/random --> get 5 random cocktails
     - GET /cocktails/id/:id --> get single cocktail by id (also displays ingredients)
     - GET /cocktails/name/:name --> get single cocktail by name (exact match. Also displays ingredients)
     - GET /cocktails/like/:name --> get multiple cocktails that partially match the name

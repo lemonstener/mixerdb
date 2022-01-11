@@ -11,6 +11,11 @@ router.get("/", async (req, res, next) => {
   return res.status(200).json(result);
 });
 
+router.get("/random", async (req, res, next) => {
+  const result = await Cocktail.selectRandom();
+  return res.status(200).json(result);
+});
+
 router.get("/id/:id", async (req, res, next) => {
   try {
     const result = await Cocktail.getById(req.params.id);
