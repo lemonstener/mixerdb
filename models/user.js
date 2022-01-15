@@ -5,21 +5,21 @@ const { BCRYPT_WORK_FACTOR } = require("../config.js");
 const Cocktail = require("./cocktail");
 
 class User {
-  static async getByUsername(username) {
-    const user = await db.query(
+  static async register(username, email, password) {
+    const duplicateUsername = await db.query(
       `
       SELECT username
       FROM users
       WHERE username=$1
-    `,
+      `,
       [username]
     );
 
-    return user;
-  }
+    if (duplicateUsername.rows[0]) {
+      throw new ExpressError("Username already taken", 400);
+    }
 
-  static async getByEmail(email) {
-    const user = await db.query(
+    const duplicateEmail = await db.query(
       `
       SELECT email
       FROM users
@@ -27,18 +27,6 @@ class User {
       `,
       [email]
     );
-
-    return user;
-  }
-
-  static async register(username, email, password) {
-    const duplicateUsername = await this.getByUsername(username);
-
-    if (duplicateUsername.rows[0]) {
-      throw new ExpressError("Username already taken", 400);
-    }
-
-    const duplicateEmail = await this.getByEmail(email);
 
     if (duplicateEmail.rows[0]) {
       throw new ExpressError(
@@ -83,6 +71,20 @@ class User {
       }
     }
     throw new ExpressError("Invalid username/password", 400);
+  }
+
+  static async getByUsername(name) {
+    const result = await db.query(
+      `
+    SELECT id,username,email
+    FROM users
+    WHERE username=$1
+    `,
+      [name]
+    );
+    const user = result.rows[0];
+    user.favorites = await User.getFavorites(user.id);
+    return user;
   }
 
   static async getFavorites(id) {

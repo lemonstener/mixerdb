@@ -28,6 +28,7 @@ router.post("/register", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   try {
     const validator = jsonschema.validate(req.body, userLoginSchema);
+    console.log(req.body);
     if (!validator.valid) {
       const errors = validator.errors.map((e) => e.stack);
       throw new ExpressError(errors, 400);
@@ -45,11 +46,12 @@ router.post("/login", async (req, res, next) => {
 router.get("/:name", async (req, res, next) => {
   try {
     const user = await User.getByUsername(req.params.name);
-    if (user.rows.length > 0) {
-      return res.status(200).json(user.rows[0]);
-    } else {
-      throw new ExpressError("User Not Found", 404);
-    }
+    return res.status(200).json(user);
+    // if (user.rows.length > 0) {
+    //   return res.status(200).json(user.rows[0]);
+    // } else {
+    //   throw new ExpressError("User Not Found", 404);
+    // }
   } catch (error) {
     return next(error);
   }
