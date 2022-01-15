@@ -100,10 +100,16 @@ class Ingredient {
       [id]
     );
 
-    if (result.rows.length === 0) {
-      throw new ExpressError("No cocktails with that ingredient", 404);
-    }
+    // if (result.rows.length === 0) {
+    //   throw new ExpressError("No cocktails with that ingredient", 404);
+    // }
     return result.rows;
+  }
+
+  static async getCocktailsByName(name) {
+    const result = await Ingredient.getByName(name);
+    const cocktails = await Ingredient.getCocktails(result.id);
+    return cocktails;
   }
 }
 
