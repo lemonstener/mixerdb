@@ -21,6 +21,8 @@
         "username": {
             "$id": "#/properties/username",
             "type": "string",
+            "minLength": 5,
+            "maxLength": 25,
             "title": "The username schema",
             "description": "An explanation about the purpose of this instance.",
             "default": "",
@@ -31,6 +33,7 @@
         "password": {
             "$id": "#/properties/password",
             "type": "string",
+            "minLength": 5,
             "title": "The password schema",
             "description": "An explanation about the purpose of this instance.",
             "default": "",
