@@ -16,7 +16,7 @@ class Cocktail {
       SELECT id,name,img,likes
       FROM cocktails
       ORDER BY RANDOM()
-      LIMIT 10;
+      LIMIT 20;
       `
     );
 
