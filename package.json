@@ -20,5 +20,8 @@
     "jsonschema": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.1"
+  },
+  "engine": {
+    "node": "16.6.0"
   }
 }
