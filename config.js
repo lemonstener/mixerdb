@@ -9,11 +9,8 @@ const SECRET_KEY =
 
 const BCRYPT_WORK_FACTOR = 12;
 
-const PORT = process.env.NODE_ENV || 80;
-
 module.exports = {
   DB_URI,
   SECRET_KEY,
   BCRYPT_WORK_FACTOR,
-  PORT,
 };
