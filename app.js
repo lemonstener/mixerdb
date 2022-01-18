@@ -5,9 +5,11 @@ const ingredientRoutes = require("./routes/ingredients");
 const coctailRoutes = require("./routes/cocktails");
 const userRoutes = require("./routes/users");
 const cors = require("cors");
+const { allowCrossDomain } = require("./middleware/middleware");
 
 app.use(cors());
 app.use(express.json());
+app.use(allowCrossDomain);
 app.use("/ingredients", ingredientRoutes);
 app.use("/cocktails", coctailRoutes);
 app.use("/users", userRoutes);
