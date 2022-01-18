@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === "production") {
   });
 } else {
   client = new Client({
-    connectionString: getDatabaseUri(),
+    connectionString: DB_URI,
   });
 }
 
