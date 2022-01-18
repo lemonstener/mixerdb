@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
   const status = error.status || 500;
   const msg = error.msg;
-  res.status(status).send(error.msg);
+  res.status(status).send(msg);
 });
 
 module.exports = app;
