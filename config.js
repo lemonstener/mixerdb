@@ -1,7 +1,12 @@
-const DB_URI =
-  process.env.NODE_ENV === "test"
-    ? "postgresql:///mixer_db_test"
-    : "postgresql:///mixer_db";
+"use strict";
+
+require("dotenv").config();
+
+function getDatabaseUri() {
+  return process.env.NODE_ENV === "test"
+    ? "mixer_db_test"
+    : process.env.DATABASE_URL || "mixer_db";
+}
 
 const SECRET_KEY =
   process.env.SECRET_KEY ||
@@ -9,8 +14,11 @@ const SECRET_KEY =
 
 const BCRYPT_WORK_FACTOR = 12;
 
+const PORT = +process.env.PORT || 3001;
+
 module.exports = {
-  DB_URI,
+  PORT,
   SECRET_KEY,
   BCRYPT_WORK_FACTOR,
+  getDatabaseUri,
 };
