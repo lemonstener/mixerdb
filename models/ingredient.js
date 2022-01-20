@@ -100,9 +100,6 @@ class Ingredient {
       [id]
     );
 
-    // if (result.rows.length === 0) {
-    //   throw new ExpressError("No cocktails with that ingredient", 404);
-    // }
     return result.rows;
   }
 
