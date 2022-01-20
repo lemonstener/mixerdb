@@ -57,7 +57,7 @@ class Ingredient {
   }
 
   static async getLike(name) {
-    const str = `%${name}%`;
+    const str = `%${name.toLowerCase()}%`;
     const result = await db.query(
       `
       SELECT id,name,type,img_sm,img_md,img_lg

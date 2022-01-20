@@ -52,7 +52,7 @@ class Cocktail {
   }
 
   static async getLike(name) {
-    const str = `%${name}%`;
+    const str = `%${name.toLowerCase()}%`;
     const result = await db.query(
       `
       SELECT id,name,img,likes
