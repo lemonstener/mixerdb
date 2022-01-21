@@ -1,6 +1,7 @@
 # Mixer DB
 
 ## Overview
+![Mixer!](logo192.png)
 
 Welcome to the MixerDB repository! 
 
