@@ -12,7 +12,6 @@ const req = require("express/lib/request");
 router.post("/register", async (req, res, next) => {
   try {
     const validator = jsonschema.validate(req.body, userRegisterSchema);
-    console.log(req.body);
     if (!validator.valid) {
       const errors = validator.errors.map((e) => e.stack);
       throw new ExpressError(errors, 400);
@@ -20,7 +19,7 @@ router.post("/register", async (req, res, next) => {
     const { username, password, email } = req.body;
     const user = await User.register(username, email, password);
     const token = jwt.sign(user, SECRET_KEY);
-    return res.status(200).json({ _token: token });
+    return res.status(201).json({ _token: token });
   } catch (error) {
     return next(error);
   }
@@ -29,7 +28,6 @@ router.post("/register", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   try {
     const validator = jsonschema.validate(req.body, userLoginSchema);
-    console.log(req.body);
     if (!validator.valid) {
       const errors = validator.errors.map((e) => e.stack);
       throw new ExpressError(errors, 400);
@@ -38,7 +36,7 @@ router.post("/login", async (req, res, next) => {
     const user = await User.login(username, password);
     user.test = true;
     const token = jwt.sign(user, SECRET_KEY);
-    return res.status(200).json({ _token: token });
+    return res.status(201).json({ _token: token });
   } catch (error) {
     return next(error);
   }

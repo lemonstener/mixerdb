@@ -3401,3 +3401,68 @@ VALUES
 (563,278,'2 oz '),
 (563,127,'2 oz '),
 (563,105,'null');
+
+-- TEST DATABASE
+
+DROP DATABASE IF EXISTS mixer_db_test;
+CREATE DATABASE mixer_db_test;
+\c mixer_db_test;
+
+CREATE TABLE ingredients (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    type VARCHAR(20) NOT NULL,
+    img_sm TEXT NOT NULL,
+    img_md TEXT NOT NULL,
+    img_lg TEXT NOT NULL
+);
+
+CREATE TABLE cocktails (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    img TEXT NOT NULL,
+    instructions TEXT NOT NULL,
+    likes INT DEFAULT(0)
+);
+
+CREATE TABLE cocktail_ingredients (
+    cocktail_id INT NOT NULL REFERENCES cocktails ON DELETE CASCADE,
+    ingredient_id INT NOT NULL REFERENCES ingredients ON DELETE CASCADE,
+    measure VARCHAR(50)
+);
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(25) NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE fav_cocktails (
+    user_id INT NOT NULL REFERENCES users ON DELETE CASCADE,
+    cocktail_id INT NOT NULL REFERENCES cocktails ON DELETE CASCADE
+);
+
+INSERT INTO ingredients (name,type,img_sm,img_md,img_lg)
+VALUES
+    ('Vodka','Vodka','https://www.thecocktaildb.com/images/ingredients/Vodka-Small.png','https://www.thecocktaildb.com/images/ingredients/Vodka-Medium.png','https://www.thecocktaildb.com/images/ingredients/Vodka.png'),
+    ('Gin','Gin','https://www.thecocktaildb.com/images/ingredients/Gin-Small.png','https://www.thecocktaildb.com/images/ingredients/Gin-Medium.png','https://www.thecocktaildb.com/images/ingredients/Gin.png'),
+    ('Whiskey','Whisky','https://www.thecocktaildb.com/images/ingredients/Whiskey-Small.png','https://www.thecocktaildb.com/images/ingredients/Whiskey-Medium.png','https://www.thecocktaildb.com/images/ingredients/Whiskey.png'),
+    ('Coca-Cola','Soft Drink','https://www.thecocktaildb.com/images/ingredients/Coca-Cola-Small.png','https://www.thecocktaildb.com/images/ingredients/Coca-Cola-Medium.png','https://www.thecocktaildb.com/images/ingredients/Coca-Cola.png');
+
+INSERT INTO cocktails (name,img,instructions)
+VALUES
+  ('Gin Cocktail','some image.jpeg','Pour gin into glass and drink.'),
+  ('Whiskey and Coke','some image.jpeg','Mix whiskey and coca cola and drink it.'),
+  ('Whiskey and Vodka','some image.jpeg','Disgusting.'),
+  ('Vodka and Coke','some image.jpeg','Mix vodka and coca cola and drink it.');
+
+INSERT INTO cocktail_ingredients (cocktail_id,ingredient_id,measure)
+VALUES
+  (4,1,'2oz'),
+  (4,4,'2oz'),
+  (3,1,'2oz'),
+  (3,3,'2oz'),
+  (2,3,'2oz'),
+  (2,4,'2oz'),
+  (1,2,'2oz');

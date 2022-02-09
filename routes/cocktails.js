@@ -49,7 +49,6 @@ router.post("/favorite/:id", async (req, res, next) => {
   try {
     const token = req.body._token;
     const data = jwt.verify(token, SECRET_KEY);
-    console.log(data);
     const { msg, code } = await User.favCocktail(data.id, req.params.id);
     return res.status(code).json(msg);
   } catch (error) {
