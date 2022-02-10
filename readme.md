@@ -13,7 +13,7 @@
       - [Cocktails](#2--cocktails)
       - [Users](#3--users)
  - [Server response structure](#server-response-structure)
- - [POST requests and tokes](#post-requests-and-tokens)
+ - [POST requests and tokens](#post-requests-and-tokens)
  - [Security and password hashing](#security-and-password-hashing)
  - [User functionality and JWT tokens](#user-functionality-and-jwt-tokens)
  - [How favoriting a cocktail works](#how-favoriting-a-cocktail-works)
