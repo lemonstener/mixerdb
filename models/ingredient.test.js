@@ -3,13 +3,19 @@ const Ingredient = require("./ingredient");
 const ExpressError = require("../expressError");
 
 const {
-  commonBeforeAll,
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
 } = require("../_testCommon");
 
-beforeAll(commonBeforeAll);
+beforeAll(async () => {
+  await db.query("DELETE FROM users");
+  await db.query("DELETE FROM fav_cocktails");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=1");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=2");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=3");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=4");
+});
 beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);

@@ -4,13 +4,19 @@ const Cocktail = require("./cocktail");
 const ExpressError = require("../expressError");
 
 const {
-  commonBeforeAll,
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
 } = require("../_testCommon");
 
-beforeAll(commonBeforeAll);
+beforeAll(async () => {
+  await db.query("DELETE FROM users");
+  await db.query("DELETE FROM fav_cocktails");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=1");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=2");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=3");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=4");
+});
 beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
@@ -24,7 +30,7 @@ describe("get all cocktails", () => {
         id: 1,
         name: "Gin Cocktail",
         img: "some image.jpeg",
-        likes: 1,
+        likes: 0,
       },
       {
         id: 2,
@@ -167,8 +173,8 @@ describe("get cocktail ingredients", () => {
 
 describe("like functionality", () => {
   test("inreasing and decreasing likes works", async () => {
-    await Cocktail.increaseLikes(2);
-    let cocktail = await Cocktail.getById(2);
+    await Cocktail.increaseLikes(1);
+    let cocktail = await Cocktail.getById(1);
     expect(cocktail.likes).toBe(1);
     await Cocktail.decreaseLikes(1);
     cocktail = await Cocktail.getById(1);

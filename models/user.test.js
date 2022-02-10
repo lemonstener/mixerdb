@@ -4,13 +4,22 @@ const User = require("./user");
 const ExpressError = require("../expressError");
 
 const {
-  commonBeforeAll,
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
 } = require("../_testCommon");
 
-beforeAll(commonBeforeAll);
+beforeAll(async () => {
+  await db.query("DELETE FROM users");
+  await db.query("DELETE FROM fav_cocktails");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=1");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=2");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=3");
+  await db.query("UPDATE cocktails SET likes=0 WHERE id=4");
+  // const user1 = await User.register("test1", "test1@email.com", "password1");
+  // const user2 = await User.register("test2", "test2@email.com", "password2");
+  // await User.favCocktail(user1.id, 1);
+});
 beforeEach(commonBeforeEach);
 afterEach(commonAfterEach);
 afterAll(commonAfterAll);
@@ -21,15 +30,16 @@ describe("user registration", () => {
     expect(user.username).toEqual("test3");
   });
   test("username must be unique", async () => {
+    await User.register("test10", "test10@email.com", "password3");
     try {
-      await User.register("test1", "test3@email.com", "password3");
+      await User.register("test10", "test34@email.com", "password3");
     } catch (error) {
       expect(error instanceof ExpressError).toBeTruthy();
     }
   });
   test("email must be unique", async () => {
     try {
-      await User.register("test2", "test3@email.com", "password3");
+      await User.register("test2349", "test3@email.com", "password3");
     } catch (error) {
       expect(error instanceof ExpressError).toBeTruthy();
     }
