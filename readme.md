@@ -1,5 +1,7 @@
 # Mixer DB
 
+![Mixer!](logo192.png)
+
 ## Table of Contents
  - [Overview](#overview)
  - [Technologies used](#technologies-used)
@@ -19,7 +21,6 @@
  - [Credits](#credits)
 
 ## Overview
-![Mixer!](logo192.png)
 
 Welcome to the MixerDB repository! 
 
