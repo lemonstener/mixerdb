@@ -2,6 +2,9 @@
 
 ![Mixer!](logo192.png)
 
+## NOTE
+I built this application over 3 years ago and had the Back end hosted on Heroku. Because Heroku has recently eliminated the Free tier, you are not currently able to interact with in on the Front end. You can still view all of the code while I'm sorting this issue out.
+
 ## Table of Contents
  - [Overview](#overview)
  - [Technologies used](#technologies-used)
